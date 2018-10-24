@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 10px auto;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="360" height="512" id="myCanvas"></canvas>
+    <script src="js/Background.js"></script>
+    <script src="js/Bird.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/Pipe.js"></script>
+    <script src="js/Title.js"></script>
+    <script src="js/Scroce.js"></script>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var imgArr = ["images/bird0_0.png", "images/bird0_1.png", "images/bird0_2.png", "images/bg_day.png", "images/land.png", "images/pipe_down.png", "images/pipe_up.png", "images/title.png", "images/tutorial.png", "images/text_game_over.png", "images/font_048.png", "images/font_049.png", "images/font_050.png", "images/font_051.png", "images/font_052.png", "images/font_053.png", "images/font_054.png", "images/font_055.png", "images/font_056.png", "images/font_057.png"];
+        
+        // 所有图片加载完执行代码
+        loadImage(imgArr, function(imgArr) {
+            // 实例化对象
+            var bird = new Bird(imgArr.slice(0, 3), 60, 80);
+            var pipe = new Pipe(imgArr[5], imgArr[6], 4, 360);
+            var land = new Background(imgArr[4], 4, 0, 400);
+            var mountain = new Background(imgArr[3], 2, 0, 0);
+            var title = new Title(imgArr[7], 100, 80, imgArr[8]);
+            var scroce = new Scroce(imgArr.slice(10));
+            window.g = new Game(ctx, bird, pipe, land, mountain, title, imgArr[9], scroce);
+        })
+
+
+
+
+
+
+
+        // 定义一个函数，第一个参数传入一个图片数组，第二个参数执行回调函数
+        function loadImage(arr, callback) {
+            var idx = 0;
+            var loadImageArr = [];
+            arr.forEach(function(value,index) {
+                var img = new Image();
+                img.src = value;
+                img.onload = function() {
+                    idx++;
+                    loadImageArr[index] = this;
+                    if(idx === arr.length) {
+                        callback(loadImageArr);
+                    }
+                }
+            })          
+        }
+    </script>
+</body>
+</html>
