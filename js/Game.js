@@ -80,9 +80,10 @@ Game.prototype.clear = function() {
 // // 开始界面
 Game.prototype.startScreen = function() {
     var me = this;
-    this.ctx.canvas.tap = function() {
+    // console.log(this.ctx.canvas)
+    $(this.ctx.canvas).on("tap",function() {
         me.status = "start";
-    }
+    })
     if(this.status === "Pause") {
         this.ctx.drawImage(this.title.img, this.title.x, this.title.y);
         this.ctx.drawImage(this.title.img_tap, 120, 250);
@@ -148,9 +149,9 @@ Game.prototype.renderBird = function() {
 // 绑定事件
 Game.prototype.bindEvent = function() {
     var me = this;
-    this.ctx.canvas.tap = function() {
+    $(this.ctx.canvas).on("tap", function() {
         me.bird.up();
-    }
+    })
 }
 
 // 渲染管子
