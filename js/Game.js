@@ -373,9 +373,9 @@ Game.prototype.gameOver = function() {
     this.ctx.fillStyle = "black";
     this.ctx.fillText("Tips: 双击页面任意位置再次尝试", 75, 470);    
     // 点击刷新页面并重新开始
-    document.ondblclick = function() {
+    $(document).on("doubleTap", function() {
         window.location.reload(true);
-    }
+    })
 }
 
 // 坚持100s后的通过页面
