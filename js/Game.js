@@ -1,4 +1,4 @@
-function Game(ctx, bird, pipe, land, mountain, title, gameOver_img, scroce) {
+﻿function Game(ctx, bird, pipe, land, mountain, title, gameOver_img, scroce) {
     this.ctx = ctx;
     this.bird = bird;
     this.pipeArr = [pipe];
@@ -80,7 +80,7 @@ Game.prototype.clear = function() {
 // // 开始界面
 Game.prototype.startScreen = function() {
     var me = this;
-    this.ctx.canvas.onclick = function() {
+    this.ctx.canvas.tap = function() {
         me.status = "start";
     }
     if(this.status === "Pause") {
@@ -148,7 +148,7 @@ Game.prototype.renderBird = function() {
 // 绑定事件
 Game.prototype.bindEvent = function() {
     var me = this;
-    this.ctx.canvas.onclick = function() {
+    this.ctx.canvas.tap = function() {
         me.bird.up();
     }
 }
@@ -370,7 +370,7 @@ Game.prototype.gameOver = function() {
     this.ctx.drawImage(this.gameOver_img, 80, 200);
     this.ctx.font = "15px Arial";
     this.ctx.fillStyle = "black";
-    this.ctx.fillText("Tips: 双击页面任意位置玩 下一只蠢鸟", 55, 470);    
+    this.ctx.fillText("Tips: 双击页面任意位置再次尝试", 75, 470);    
     // 点击刷新页面并重新开始
     document.ondblclick = function() {
         window.location.reload(true);
